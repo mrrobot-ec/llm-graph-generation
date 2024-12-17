@@ -1,0 +1,95 @@
+Step 1: Load Data
+First, load the relevant MIMIC-IV tables from their CSV files.
+
+python
+Copy code
+import pandas as pd
+
+# Load CSV files
+patients = pd.read_csv('patients.csv')
+admissions = pd.read_csv('admissions.csv')
+diagnoses_icd = pd.read_csv('diagnoses_icd.csv')
+icustays = pd.read_csv('icustays.csv')
+chartevents = pd.read_csv('chartevents.csv')
+d_items = pd.read_csv('d_items.csv')
+Step 2: Filter for Diabetes Diagnoses
+Filter diagnoses_icd for relevant ICD codes (diabetes) and merge with admissions and patients.
+
+python
+Copy code
+# Filter for diabetes ICD codes
+diabetes_codes = diagnoses_icd[
+    (diagnoses_icd['icd_code'].str.startswith('250')) |  # ICD-9
+    (diagnoses_icd['icd_code'].str.startswith('E1'))    # ICD-10
+]
+
+# Merge with admissions and patients
+diabetes_patients = diabetes_codes.merge(admissions, on='hadm_id').merge(patients, on='subject_id')
+
+# Calculate approximate year of birth
+diabetes_patients['approx_year_of_birth'] = diabetes_patients['anchor_year'] - diabetes_patients['anchor_age']
+Step 3: Add ICU Events
+Filter ICU events (chartevents) for glucose-related entries and join with diabetes patients.
+
+python
+Copy code
+# Filter d_items for glucose-related items
+glucose_items = d_items[d_items['label'].str.contains('glucose', case=False)]
+
+# Filter chartevents for glucose events
+glucose_events = chartevents[chartevents['itemid'].isin(glucose_items['itemid'])]
+
+# Merge ICU stays with glucose events
+icu_diabetes_events = icustays.merge(glucose_events, on='stay_id')
+
+# Merge ICU data with diabetes patient data
+final_data = diabetes_patients.merge(icu_diabetes_events, on='hadm_id', how='inner')
+Step 4: Clean and Organize Data
+Select and organize the columns you need for analysis.
+
+python
+Copy code
+final_data = final_data[[
+    'subject_id', 
+    'gender', 
+    'approx_year_of_birth', 
+    'admittime', 
+    'dischtime', 
+    'ethnicity', 
+    'icd_code', 
+    'charttime', 
+    'value', 
+    'valuenum', 
+    'label'  # From d_items
+]]
+
+final_data.rename(columns={
+    'value': 'icu_event_value',
+    'valuenum': 'icu_event_numeric_value',
+    'label': 'icu_event_label'
+}, inplace=True)
+
+# Sort by patient and event time
+final_data.sort_values(by=['subject_id', 'admittime', 'charttime'], inplace=True)
+Step 5: Save or Analyze
+Save the final dataset or perform additional analysis.
+
+python
+Copy code
+# Save to a CSV file
+final_data.to_csv('diabetes_icu_events.csv', index=False)
+
+# Display a preview
+print(final_data.head())
+Advantages of Using Pandas
+Faster for Small Data: If the dataset isn’t huge (a few million rows), Pandas can handle it efficiently.
+In-Memory Processing: Everything is processed in memory, which avoids slow database I/O.
+Flexible Analysis: You can use Python libraries like matplotlib and seaborn for visualization.
+Tips for Large Files
+Use chunked reading if the files are too large to load into memory:
+python
+Copy code
+for chunk in pd.read_csv('chartevents.csv', chunksize=1_000_000):
+    # Process each chunk
+Filter early to reduce the data size as much as possible.
+Let me know if you'd like further help with code or optimizations!

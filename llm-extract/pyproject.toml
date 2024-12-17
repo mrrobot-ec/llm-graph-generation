@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "llm-extract"
+version = "0.1.0"
+description = ""
+authors = ["Andres-ubuntu <andrescamp_ac@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+jupyter = "^1.1.1"
+gliner = "^0.2.13"
+tqdm = "^4.67.0"
+langchain-text-splitters = "^0.3.2"
+sparqlwrapper = "^2.0.0"
+litellm = "^1.52.6"
+pyvis = "^0.3.2"
+wikipedia = "^1.4.0"
+jupyterlab = "^4.3.3"
+gradio = "^5.9.0"
+neo4j = "^5.27.0"
+pandas = "^2.2.3"
+matplotlib = "^3.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

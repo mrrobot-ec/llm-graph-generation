@@ -1,0 +1,55 @@
+# Python files
+*.pyc
+*.pyo
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+env/
+
+# Jupyter Notebook Files
+.ipynb_checkpoints/
+
+# Poetry
+.poetry/
+
+# Specific to your project structure
+data-retrieval/.ipynb_checkpoints/
+llm-extract/.ipynb_checkpoints/
+traditional-test/*
+
+# Python files
+data-retrieval/*.pyc
+data-retrieval/*.pyo
+data-retrieval/__pycache__/
+data-retrieval/.pytest_cache/
+data-retrieval/.mypy_cache/
+
+# Virtual environments
+data-retrieval/.venv/
+data-retrieval/env/
+
+# Jupyter Notebook Files
+data-retrieval/.ipynb_checkpoints/
+
+# Poetry
+data-retrieval/.poetry/
+
+# Python files
+llm-extract/*.pyc
+llm-extract/*.pyo
+llm-extract/__pycache__/
+llm-extract/.pytest_cache/
+llm-extract/.mypy_cache/
+
+# Virtual environments
+llm-extract/.venv/
+llm-extract/env/
+
+# Jupyter Notebook Files
+llm-extract/.ipynb_checkpoints/
+
+# Poetry
+llm-extract/.poetry/
