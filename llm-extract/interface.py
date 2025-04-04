@@ -7,7 +7,7 @@ from io import BytesIO
 from PIL import Image
 
 # Neo4j database connection details
-uri = "bolt://localhost:7687"  # Adjust if your Neo4j server is running elsewhere
+uri = "bolt://localhost:7688"  # Adjust if your Neo4j server is running elsewhere
 username = "neo4j"
 password = "12345678"
 
@@ -129,7 +129,8 @@ iface = gr.Interface(
     fn=interface,
     inputs=[
         gr.Textbox(label="Patient ID (e.g., Patient ID: 10000980)"),
-        gr.Dropdown(choices=["Patient Diagnoses", "Patient Medications", "All Medications in Database"], label="Query Type")
+        gr.Dropdown(choices=["Patient Diagnoses", "Patient Medications", "All Medications in Database"], label="Query Type"),
+        gr.Button(value="All")
     ],
     outputs=[gr.DataFrame()],
     live=True

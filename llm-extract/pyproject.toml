@@ -20,6 +20,8 @@ gradio = "^5.9.0"
 neo4j = "^5.27.0"
 pandas = "^2.2.3"
 matplotlib = "^3.10.0"
+llama-index = "^0.12.16"
+llama-index-llms-ollama = "^0.5.2"
 
 [build-system]
 requires = ["poetry-core"]
