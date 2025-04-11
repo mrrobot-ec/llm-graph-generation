@@ -23,6 +23,9 @@ data-retrieval/.ipynb_checkpoints/
 llm-extract/.ipynb_checkpoints/
 traditional-test/*
 
+data-retrieval/filtered_diabetes_data.csv
+
+
 # Python files
 data-retrieval/*.pyc
 data-retrieval/*.pyo
