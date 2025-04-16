@@ -1,29 +1,27 @@
-[tool.poetry]
+[project]
 name = "llm-extract"
 version = "0.1.0"
-description = ""
-authors = ["Andres-ubuntu <andrescamp_ac@hotmail.com>"]
+description = "Add your description here"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-jupyter = "^1.1.1"
-gliner = "^0.2.13"
-tqdm = "^4.67.0"
-langchain-text-splitters = "^0.3.2"
-sparqlwrapper = "^2.0.0"
-litellm = "^1.52.6"
-pyvis = "^0.3.2"
-wikipedia = "^1.4.0"
-jupyterlab = "^4.3.3"
-gradio = "^5.9.0"
-neo4j = "^5.27.0"
-pandas = "^2.2.3"
-matplotlib = "^3.10.0"
-llama-index = "^0.12.16"
-llama-index-llms-ollama = "^0.5.2"
-langchain = "^0.3.23"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyter>=1.1.1",
+    "gliner>=0.2.13",
+    "tqdm>=4.67.0",
+    "langchain-text-splitters>=0.3.2",
+    "sparqlwrapper>=2.0.0",
+    "litellm>=1.65.7",
+    "mcp-neo4j-cypher>=0.1.1",
+    "mcp[cli]>=1.6.0",
+    "pyvis>=0.3.2",
+    "wikipedia>=1.4.0",
+    "jupyterlab>=4.3.3",
+    "gradio>=5.9.0",
+    "neo4j>=5.27.0",
+    "pandas>=2.2.3",
+    "matplotlib>=3.10.0",
+    "llama-index>=0.12.16",
+    "llama-index-llms-ollama>=0.5.2",
+    "langchain>=0.3.23",
+    "google-adk>=0.1.0",
+]
