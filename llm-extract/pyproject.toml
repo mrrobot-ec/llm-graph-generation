@@ -24,4 +24,5 @@ dependencies = [
     "llama-index-llms-ollama>=0.5.2",
     "langchain>=0.3.23",
     "google-adk>=0.1.0",
+    "streamlit>=1.44.1",
 ]

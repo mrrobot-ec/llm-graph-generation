@@ -50,12 +50,13 @@ class OllamaMCPClient:
                 } for tool in response.tools]
         print("\nConnected to server with tools:", [tool["function"]["name"] for tool in self.tools])
 
-
+    def get_tools(self):
+        return self.tools
 
     async def process_query(self, query: str) -> str:
         """Process a query using LLM and available tools"""
-        schema = await self.session.call_tool("get-neo4j-schema")
-        # print(schema.content[0].text)
+        schema = await self.session.call_tool("get_neo4j_schema")
+        print("------ help",schema.content)
         system_context: str = f"""
         You are a helpful assistant that converts questions into Cypher queries for a Neo4j graph.
         Assume that all the patients in this knowledge database have diabetes.
